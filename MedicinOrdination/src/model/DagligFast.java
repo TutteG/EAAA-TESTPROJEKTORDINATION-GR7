@@ -12,6 +12,10 @@ public class DagligFast extends Ordination {
 		dosiser = new Dosis[4];
 	}
 
+	public Dosis[] getDoser() {
+		return dosiser;
+	}
+
 	public Dosis createDosis(LocalTime tid, double antal) {
 		Dosis dosis = new Dosis(tid, antal);
 		boolean found = false;
