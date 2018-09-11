@@ -10,10 +10,10 @@ import javafx.scene.text.Font;
 import model.Laegemiddel;
 
 public class StatistikPane extends GridPane {
-	private TextField ordinationerPerVÃ¦gtPerLÃ¦gemiddel = new TextField();
-	private TextField txfVÃ¦gtFra = new TextField();
-	private TextField txfVÃ¦gtTil = new TextField();
-	private ComboBox<Laegemiddel> lstLÃ¦gemidler = new ComboBox<Laegemiddel>();
+	private TextField ordinationerPerVægtPerLægemiddel = new TextField();
+	private TextField txfVægtFra = new TextField();
+	private TextField txfVægtTil = new TextField();
+	private ComboBox<Laegemiddel> lstLægemidler = new ComboBox<Laegemiddel>();
 	private Service service;
 
 	public StatistikPane() {
@@ -43,41 +43,41 @@ public class StatistikPane extends GridPane {
 		label.setFont(new Font(25));
 		this.add(label, 0, 0, 2, 1);
 
-		txfVÃ¦gtFra.setMaxWidth(40);
-		txfVÃ¦gtTil.setMaxWidth(40);
-		pane1.add(new Label("VÃ¦gt fra: "), 0, 0);
-		pane1.add(txfVÃ¦gtFra, 1, 0);
+		txfVægtFra.setMaxWidth(40);
+		txfVægtTil.setMaxWidth(40);
+		pane1.add(new Label("Vægt fra: "), 0, 0);
+		pane1.add(txfVægtFra, 1, 0);
 
-		pane1.add(new Label("VÃ¦gt til: "), 0, 1);
-		pane1.add(txfVÃ¦gtTil, 1, 1);
+		pane1.add(new Label("Vægt til: "), 0, 1);
+		pane1.add(txfVægtTil, 1, 1);
 
-		lstLÃ¦gemidler.getItems().setAll(service.getAllLaegemidler());
-		pane1.add(new Label("LÃ¦gemiddel: "), 0, 2);
-		pane1.add(lstLÃ¦gemidler, 1, 2);
+		lstLægemidler.getItems().setAll(service.getAllLaegemidler());
+		pane1.add(new Label("Lægemiddel: "), 0, 2);
+		pane1.add(lstLægemidler, 1, 2);
 		this.add(pane1, 0, 1);
 
 		pane2.add(new Label("Antal: "), 0, 0);
-		ordinationerPerVÃ¦gtPerLÃ¦gemiddel.setEditable(false);
-		pane2.add(ordinationerPerVÃ¦gtPerLÃ¦gemiddel, 1, 0);
+		ordinationerPerVægtPerLægemiddel.setEditable(false);
+		pane2.add(ordinationerPerVægtPerLægemiddel, 1, 0);
 		this.add(pane2, 0, 2);
 
 		// Adding listeners
-		txfVÃ¦gtFra.setOnKeyReleased(event -> updateDetails());
-		txfVÃ¦gtTil.setOnKeyReleased(event -> updateDetails());
-		lstLÃ¦gemidler.setOnAction(event -> updateDetails());
+		txfVægtFra.setOnKeyReleased(event -> updateDetails());
+		txfVægtTil.setOnKeyReleased(event -> updateDetails());
+		lstLægemidler.setOnAction(event -> updateDetails());
 
 		updateDetails();
 	}
 
 	public void updateDetails() {
 		try {
-			int vFra = Integer.valueOf(txfVÃ¦gtFra.getText());
-			int vTil = Integer.valueOf(txfVÃ¦gtTil.getText());
-			Laegemiddel lÃ¦gemiddel = lstLÃ¦gemidler.getSelectionModel().getSelectedItem();
-			int antal = service.antalOrdinationerPrVÃ¦gtPrLÃ¦gemiddel(vFra, vTil, lÃ¦gemiddel);
-			ordinationerPerVÃ¦gtPerLÃ¦gemiddel.setText(antal + "");
+			int vFra = Integer.valueOf(txfVægtFra.getText());
+			int vTil = Integer.valueOf(txfVægtTil.getText());
+			Laegemiddel lægemiddel = lstLægemidler.getSelectionModel().getSelectedItem();
+			int antal = service.antalOrdinationerPrVægtPrLægemiddel(vFra, vTil, lægemiddel);
+			ordinationerPerVægtPerLægemiddel.setText(antal + "");
 		} catch (NumberFormatException e) {
-			ordinationerPerVÃ¦gtPerLÃ¦gemiddel.setText("");
+			ordinationerPerVægtPerLægemiddel.setText("");
 		}
 	}
 

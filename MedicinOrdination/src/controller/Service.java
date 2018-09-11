@@ -55,7 +55,7 @@ public class Service {
 	}
 
 	/**
-	 * Opretter og returnerer en DagligSkÃ¦v ordination. Hvis startDato er efter
+	 * Opretter og returnerer en DagligSkæv ordination. Hvis startDato er efter
 	 * slutDato kastes en IllegalArgumentException og ordinationen oprettes ikke.
 	 * Hvis antallet af elementer i klokkeSlet og antalEnheder er forskellige kastes
 	 * ogsÃ¥ en IllegalArgumentException.
@@ -78,9 +78,9 @@ public class Service {
 	}
 
 	/**
-	 * Den anbefalede dosis for den pÃ¥gÃ¦ldende patient (der skal tages hensyn til
-	 * patientens vÃ¦gt). Det er en forskellig enheds faktor der skal anvendes, og
-	 * den er afhÃ¦ngig af patientens vÃ¦gt. Pre: patient og lÃ¦gemiddel er ikke null
+	 * Den anbefalede dosis for den pÃ¥gældende patient (der skal tages hensyn til
+	 * patientens vægt). Det er en forskellig enheds faktor der skal anvendes, og
+	 * den er afhængig af patientens vægt. Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		double result;
@@ -95,10 +95,10 @@ public class Service {
 	}
 
 	/**
-	 * For et givent vÃ¦gtinterval og et givent lÃ¦gemiddel, hentes antallet af
+	 * For et givent vægtinterval og et givent lægemiddel, hentes antallet af
 	 * ordinationer. Pre: laegemiddel er ikke null
 	 */
-	public int antalOrdinationerPrVÃ¦gtPrLÃ¦gemiddel(double vÃ¦gtStart, double vÃ¦gtSlut, Laegemiddel laegemiddel) {
+	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
 		// TODO
 		return 0;
 	}
