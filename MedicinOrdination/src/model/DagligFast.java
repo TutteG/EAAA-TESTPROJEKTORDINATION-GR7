@@ -7,8 +7,8 @@ import java.time.temporal.ChronoUnit;
 public class DagligFast extends Ordination {
 	Dosis[] dosiser;
 
-	public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
-		super(startDen, slutDen, laegemiddel);
+	public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient) {
+		super(startDen, slutDen, laegemiddel, patient);
 		dosiser = new Dosis[4];
 	}
 
