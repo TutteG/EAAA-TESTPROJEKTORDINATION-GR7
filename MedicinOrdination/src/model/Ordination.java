@@ -7,14 +7,26 @@ public abstract class Ordination {
 	private LocalDate startDen;
 	private LocalDate slutDen;
 	private Laegemiddel laegemiddel;
-	// private Patient patient;
-	public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
+	private Patient patient;
+	
+	public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient) {
 		this.startDen = startDen;
 		this.slutDen = slutDen;
 		this.laegemiddel = laegemiddel;
-		// patient.addOrdination(this)
-		// add/remove ordination
+		this.patient = patient;
+		patient.addOrdination(this);
+		//TODO vend tilbage
 	}	
+	
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+
 
 	public Laegemiddel getLaegemiddel() {
 		return laegemiddel;

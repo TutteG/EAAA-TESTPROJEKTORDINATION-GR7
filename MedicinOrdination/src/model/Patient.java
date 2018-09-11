@@ -14,11 +14,11 @@ public class Patient {
 		this.vaegt = vaegt;
 	}
 	
-	public void addPatient(Ordination o) {
+	public void addOrdination(Ordination o) {
 		ordinationer.add(o);
 	}
 	
-	public void removePatient(Ordination o) {
+	public void removeOrdination(Ordination o) {
 		ordinationer.remove(o);
 	}
 
