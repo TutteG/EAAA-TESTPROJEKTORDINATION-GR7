@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class DagligSkaev extends Ordination {
 	private ArrayList<Dosis> dosiser;
 
-	public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
-		super(startDen, slutDen, laegemiddel);
+	public DagligSkaev(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient) {
+		super(startDen, slutDen, laegemiddel, patient);
 		// TODO Auto-generated constructor stub
 		dosiser = new ArrayList<Dosis>();
 	}
