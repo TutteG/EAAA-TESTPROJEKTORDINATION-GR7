@@ -7,16 +7,13 @@ public abstract class Ordination {
 	private LocalDate startDen;
 	private LocalDate slutDen;
 	private Laegemiddel laegemiddel;
-<<<<<<< HEAD
-
-	// TODO Link til Laegemiddel
-	// TODO constructor (med specifikation)
-=======
->>>>>>> master
+	// private Patient patient;
 	public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
 		this.startDen = startDen;
 		this.slutDen = slutDen;
 		this.laegemiddel = laegemiddel;
+		// patient.addOrdination(this)
+		// add/remove ordination
 	}	
 
 	public Laegemiddel getLaegemiddel() {

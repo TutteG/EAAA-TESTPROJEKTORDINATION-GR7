@@ -12,7 +12,6 @@ public class Patient {
 		this.cprnr = cprnr;
 		this.navn = navn;
 		this.vaegt = vaegt;
-		
 	}
 	
 	public void addPatient(Ordination o) {
