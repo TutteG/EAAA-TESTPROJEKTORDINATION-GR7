@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 
 public class DagligFast extends Ordination {
@@ -9,6 +10,18 @@ public class DagligFast extends Ordination {
 	public DagligFast(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
 		super(startDen, slutDen, laegemiddel);
 		dosiser = new Dosis[4];
+	}
+
+	public Dosis createDosis(LocalTime tid, double antal) {
+		Dosis dosis = new Dosis(tid, antal);
+		boolean found = false;
+		for (int i = 0; i < dosiser.length && found != true; i++) {
+			if (dosiser[i] == null) {
+				dosiser[i] = dosis;
+				found = true;
+			}
+		}
+		return dosis;
 	}
 
 	@Override
