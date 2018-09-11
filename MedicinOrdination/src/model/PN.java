@@ -33,13 +33,12 @@ public class PN extends Ordination {
 
 	@Override
 	public double doegnDosis() {
-		return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+		return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen()); //LocalDate.now()?
 	}
 
 	@Override
 	public double samletDosis() {
-		// TODO
-		return 0.0;
+		return this.antalEnheder * this.antalGangeGivet;
 	}
 
 	/**

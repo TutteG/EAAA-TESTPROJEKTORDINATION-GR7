@@ -55,10 +55,10 @@ public class Service {
 	}
 
 	/**
-	 * Opretter og returnerer en DagligSk�v ordination. Hvis startDato er efter
+	 * Opretter og returnerer en DagligSkæv ordination. Hvis startDato er efter
 	 * slutDato kastes en IllegalArgumentException og ordinationen oprettes ikke.
 	 * Hvis antallet af elementer i klokkeSlet og antalEnheder er forskellige kastes
-	 * også en IllegalArgumentException.
+	 * ogsÃ¥ en IllegalArgumentException.
 	 *
 	 * Pre: startDen, slutDen, patient og laegemiddel er ikke null
 	 */
@@ -69,7 +69,7 @@ public class Service {
 	}
 
 	/**
-	 * En dato for hvornår ordinationen anvendes tilføjes ordinationen. Hvis datoen
+	 * En dato for hvornÃ¥r ordinationen anvendes tilfÃ¸jes ordinationen. Hvis datoen
 	 * ikke er indenfor ordinationens gyldighedsperiode kastes en
 	 * IllegalArgumentException Pre: ordination og dato er ikke null
 	 */
@@ -78,9 +78,9 @@ public class Service {
 	}
 
 	/**
-	 * Den anbefalede dosis for den påg�ldende patient (der skal tages hensyn til
-	 * patientens v�gt). Det er en forskellig enheds faktor der skal anvendes, og
-	 * den er afh�ngig af patientens v�gt. Pre: patient og l�gemiddel er ikke null
+	 * Den anbefalede dosis for den pÃ¥gældende patient (der skal tages hensyn til
+	 * patientens vægt). Det er en forskellig enheds faktor der skal anvendes, og
+	 * den er afhængig af patientens vægt. Pre: patient og lægemiddel er ikke null
 	 */
 	public double anbefaletDosisPrDoegn(Patient patient, Laegemiddel laegemiddel) {
 		double result;
@@ -95,10 +95,10 @@ public class Service {
 	}
 
 	/**
-	 * For et givent v�gtinterval og et givent l�gemiddel, hentes antallet af
+	 * For et givent vægtinterval og et givent lægemiddel, hentes antallet af
 	 * ordinationer. Pre: laegemiddel er ikke null
 	 */
-	public int antalOrdinationerPrV�gtPrL�gemiddel(double v�gtStart, double v�gtSlut, Laegemiddel laegemiddel) {
+	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
 		// TODO
 		return 0;
 	}
@@ -112,9 +112,9 @@ public class Service {
 	}
 
 	/**
-	 * Metode der kan bruges til at checke at en startDato ligger før en slutDato.
+	 * Metode der kan bruges til at checke at en startDato ligger fÃ¸r en slutDato.
 	 *
-	 * @return true hvis startDato er før slutDato, false ellers.
+	 * @return true hvis startDato er fÃ¸r slutDato, false ellers.
 	 */
 	private boolean checkStartFoerSlut(LocalDate startDato, LocalDate slutDato) {
 		boolean result = true;
@@ -141,7 +141,7 @@ public class Service {
 	public void createSomeObjects() {
 		opretPatient("121256-0512", "Jane Jensen", 63.4);
 		opretPatient("070985-1153", "Finn Madsen", 83.2);
-		opretPatient("050972-1233", "Hans Jørgensen", 89.4);
+		opretPatient("050972-1233", "Hans JÃ¸rgensen", 89.4);
 		opretPatient("011064-1522", "Ulla Nielsen", 59.9);
 		opretPatient("090149-2529", "Ib Hansen", 87.7);
 
