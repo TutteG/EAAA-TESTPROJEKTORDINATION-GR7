@@ -3,8 +3,8 @@ package storage;
 import java.util.ArrayList;
 import java.util.List;
 
-import ordination.Laegemiddel;
-import ordination.Patient;
+import model.Laegemiddel;
+import model.Patient;
 
 public class Storage {
 	private List<Patient> patienter;

@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Service;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
@@ -10,9 +11,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
-import ordination.Laegemiddel;
-import ordination.Patient;
-import service.Service;
+import model.Laegemiddel;
+import model.Patient;
 
 public class OpretOrdinationPane extends GridPane {
 
@@ -83,11 +83,9 @@ public class OpretOrdinationPane extends GridPane {
 		} else if (toggleGroup.getSelectedToggle() == null) {
 			lblError.setText("Du skal vælge en ordinationstype.");
 		} else {
-			OpretOrdinationDialog dia = new OpretOrdinationDialog(lstPatient
-					.getSelectionModel().getSelectedItem(), lstLaegemiddel
-					.getSelectionModel().getSelectedItem(),
-					(TypeOrdination) toggleGroup.getSelectedToggle()
-					.getUserData());
+			OpretOrdinationDialog dia = new OpretOrdinationDialog(lstPatient.getSelectionModel().getSelectedItem(),
+					lstLaegemiddel.getSelectionModel().getSelectedItem(),
+					(TypeOrdination) toggleGroup.getSelectedToggle().getUserData());
 			dia.showAndWait();
 		}
 	}

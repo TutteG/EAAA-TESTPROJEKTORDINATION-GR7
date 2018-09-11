@@ -1,5 +1,6 @@
 package gui;
 
+import controller.Service;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -7,7 +8,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import service.Service;
 
 public class MainApp extends Application {
 	private Service service;
@@ -57,8 +57,7 @@ public class MainApp extends Application {
 		tabPane.getTabs().add(tabVis);
 		tabPane.getTabs().add(tabStatistik);
 
-		tabVis.setOnSelectionChanged(event -> visOrdinationPane
-				.updateControls());
+		tabVis.setOnSelectionChanged(event -> visOrdinationPane.updateControls());
 	}
 
 }
