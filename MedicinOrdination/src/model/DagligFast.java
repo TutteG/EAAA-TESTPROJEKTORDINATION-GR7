@@ -16,7 +16,7 @@ public class DagligFast extends Ordination {
 		return dosiser;
 	}
 
-	public Dosis createDosis(LocalTime tid, double antal) {
+	public void createDosis(LocalTime tid, double antal) {
 		Dosis dosis = new Dosis(tid, antal);
 		boolean found = false;
 		for (int i = 0; i < dosiser.length && found != true; i++) {
@@ -25,7 +25,6 @@ public class DagligFast extends Ordination {
 				found = true;
 			}
 		}
-		return dosis;
 	}
 
 	@Override
