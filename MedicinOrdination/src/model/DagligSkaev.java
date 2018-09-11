@@ -20,6 +20,10 @@ public class DagligSkaev extends Ordination {
 		dosiser.add(dosis);
 	}
 
+	public ArrayList<Dosis> getDoser() {
+		return dosiser;
+	}
+
 	@Override
 	public double samletDosis() {
 		// TODO Auto-generated method stub
