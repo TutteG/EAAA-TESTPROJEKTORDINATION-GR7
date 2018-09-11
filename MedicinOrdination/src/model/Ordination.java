@@ -7,13 +7,12 @@ public abstract class Ordination {
 	private LocalDate startDen;
 	private LocalDate slutDen;
 	private Laegemiddel laegemiddel;
-
 	public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel) {
 		// TODO Auto-generated constructor stub
 		this.startDen = startDen;
 		this.slutDen = slutDen;
 		this.laegemiddel = laegemiddel;
-	}
+	}	
 
 	// TODO Link til Laegemiddel
 	// TODO constructor (med specifikation)
