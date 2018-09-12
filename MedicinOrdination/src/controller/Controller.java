@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import model.*;
+import model.DagligFast;
+import model.DagligSkaev;
+import model.Laegemiddel;
+import model.PN;
+import model.Patient;
 import storage.Storage;
 
 public class Controller {
@@ -49,15 +53,15 @@ public class Controller {
 			Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 		if (startDen.isAfter(slutDen)) {
 			throw new IllegalArgumentException("Start dato må ikke være efter slut dato");
-		}else {
+		} else {
 			DagligFast dagligFast = new DagligFast(startDen, slutDen, patient);
 			dagligFast.setLaegemiddel(laegemiddel);
 			dagligFast.createDosis(LocalTime.of(8, 0), morgenAntal);
 			dagligFast.createDosis(LocalTime.of(12, 0), middagAntal);
 			dagligFast.createDosis(LocalTime.of(18, 0), aftenAntal);
 			dagligFast.createDosis(LocalTime.of(22, 0), natAntal);
+			return dagligFast;
 		}
-		return null;
 	}
 
 	/**
