@@ -8,8 +8,8 @@ public class PN extends Ordination {
 	private double antalEnheder;
 	private int antalGangeGivet;
 
-	public PN(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient, double antalEnheder) {
-		super(startDen, slutDen, laegemiddel, patient);
+	public PN(LocalDate startDen, LocalDate slutDen, Patient patient, double antalEnheder) {
+		super(startDen, slutDen, patient);
 		this.antalEnheder = antalEnheder;
 		this.antalGangeGivet = 0;
 	}
@@ -33,7 +33,7 @@ public class PN extends Ordination {
 
 	@Override
 	public double doegnDosis() {
-		return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen()); //LocalDate.now()?
+		return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen()); // LocalDate.now()?
 	}
 
 	@Override

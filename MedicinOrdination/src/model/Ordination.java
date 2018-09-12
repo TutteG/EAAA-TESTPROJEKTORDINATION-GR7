@@ -3,21 +3,21 @@ package model;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public abstract class 	Ordination {
+public abstract class Ordination {
 	private LocalDate startDen;
 	private LocalDate slutDen;
 	private Laegemiddel laegemiddel;
 	private Patient patient;
-	
-	public Ordination(LocalDate startDen, LocalDate slutDen, Laegemiddel laegemiddel, Patient patient) {
+
+	public Ordination(LocalDate startDen, LocalDate slutDen, Patient patient) {
 		this.startDen = startDen;
 		this.slutDen = slutDen;
-		this.laegemiddel = laegemiddel;
+		this.laegemiddel = null;
 		this.patient = patient;
 		patient.addOrdination(this);
-		//TODO vend tilbage
-	}	
-	
+		// TODO vend tilbage
+	}
+
 	public Patient getPatient() {
 		return patient;
 	}
@@ -25,8 +25,6 @@ public abstract class 	Ordination {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
-
-
 
 	public Laegemiddel getLaegemiddel() {
 		return laegemiddel;
