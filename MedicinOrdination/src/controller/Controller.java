@@ -4,11 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import model.DagligFast;
-import model.DagligSkaev;
-import model.Laegemiddel;
-import model.PN;
-import model.Patient;
+import model.*;
 import storage.Storage;
 
 public class Controller {
@@ -39,8 +35,9 @@ public class Controller {
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double antal) {
-		// TODO
-		return null;
+		PN pn = new PN(startDen, slutDen, patient, antal);
+		pn.setLaegemiddel(laegemiddel);
+		return pn;
 	}
 
 	/**
