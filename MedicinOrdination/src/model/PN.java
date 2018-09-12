@@ -23,17 +23,23 @@ public class PN extends Ordination {
 	 * @return
 	 */
 	public boolean givDosis(LocalDate givesDen) {
-		if ((givesDen.isAfter(getStartDen()) || givesDen.equals(getStartDen()))
-				&& (givesDen.isBefore(getSlutDen()) || givesDen.isEqual(getSlutDen()))) {
-			antalGangeGivet++;
-			return true;
+		if (antalEnheder > 0) {
+			if ((givesDen.isAfter(getStartDen()) || givesDen.equals(getStartDen()))
+					&& (givesDen.isBefore(getSlutDen()) || givesDen.isEqual(getSlutDen()))) {
+				antalGangeGivet++;
+				return true;
+			}
 		}
 		return false;
 	}
 
 	@Override
 	public double doegnDosis() {
-		return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen()); // LocalDate.now()?
+		try {
+			return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen()); // LocalDate.now()?
+		} catch (ArithmeticException e) {
+			return -1;
+		}
 	}
 
 	@Override
