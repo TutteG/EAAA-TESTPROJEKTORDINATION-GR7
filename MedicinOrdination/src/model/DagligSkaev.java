@@ -14,10 +14,15 @@ public class DagligSkaev extends Ordination {
 		dosiser = new ArrayList<Dosis>();
 	}
 
-	public void opretDosis(LocalTime tid, double antal) {
-		// TODO retunere null hvis dosis er 0 eller under
-		Dosis dosis = new Dosis(tid, antal);
-		dosiser.add(dosis);
+	public Dosis opretDosis(LocalTime tid, double antal) {
+		if (antal <= 0) {
+			return null;
+		} else {
+			Dosis dosis = new Dosis(tid, antal);
+			dosiser.add(dosis);
+			return dosis;
+		}
+
 	}
 
 	public ArrayList<Dosis> getDoser() {
@@ -41,7 +46,7 @@ public class DagligSkaev extends Ordination {
 
 	@Override
 	public String getType() {
-		
+
 		return getLaegemiddel().getEnhed();
 	}
 }
