@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.Laegemiddel;
 import model.Patient;
-import controller.Service;
+import controller.Controller;
 
 public class OpretOrdinationDialog extends Stage {
 
@@ -36,11 +36,11 @@ public class OpretOrdinationDialog extends Stage {
 	private DagligFastPane dagligFastPane;
 	private DagligSkaevPane dagligSkaevPane;
 
-	private Service service;
+	private Controller service;
 
 	public OpretOrdinationDialog(Patient patient, Laegemiddel laegemiddel,
 			TypeOrdination type) {
-	    this.service = Service.getService();
+	    this.service = Controller.getService();
 	    
 		this.patient = patient;
 		this.laegemiddel = laegemiddel;

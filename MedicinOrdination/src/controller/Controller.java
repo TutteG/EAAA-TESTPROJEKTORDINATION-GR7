@@ -11,23 +11,23 @@ import model.PN;
 import model.Patient;
 import storage.Storage;
 
-public class Service {
+public class Controller {
 	private Storage storage;
-	private static Service service;
+	private static Controller service;
 
-	private Service() {
+	private Controller() {
 		storage = new Storage();
 	}
 
-	public static Service getService() {
+	public static Controller getService() {
 		if (service == null) {
-			service = new Service();
+			service = new Controller();
 		}
 		return service;
 	}
 
-	public static Service getTestService() {
-		return new Service();
+	public static Controller getTestService() {
+		return new Controller();
 	}
 
 	/**

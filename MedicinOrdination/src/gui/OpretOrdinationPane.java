@@ -1,6 +1,6 @@
 package gui;
 
-import controller.Service;
+import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
@@ -25,11 +25,11 @@ public class OpretOrdinationPane extends GridPane {
 	private Button btnOpret = new Button("Opret ordination");
 	private Label lblError;
 
-	private Service service;
+	private Controller service;
 
 	public OpretOrdinationPane() {
 
-		service = Service.getService();
+		service = Controller.getService();
 
 		this.setPadding(new Insets(20));
 		this.setHgap(20);

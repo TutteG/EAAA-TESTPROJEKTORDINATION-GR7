@@ -1,6 +1,6 @@
 package gui;
 
-import controller.Service;
+import controller.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -16,10 +16,10 @@ public class VisOrdinationPane extends GridPane {
 	private ListView<Ordination> lstOrdination = new ListView<>();
 	private OrdinationDetailsPane ordinationDetailsPane = new OrdinationDetailsPane();
 
-	private Service service;
+	private Controller service;
 
 	public VisOrdinationPane() {
-		service = Service.getService();
+		service = Controller.getService();
 
 		this.setPadding(new Insets(20));
 		this.setHgap(20);

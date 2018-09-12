@@ -2,7 +2,7 @@ package gui;
 
 import java.time.LocalDate;
 
-import controller.Service;
+import controller.Controller;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -35,10 +35,10 @@ public class OrdinationDetailsPane extends GridPane {
 
 	private Label lblError = new Label();
 
-	private Service service;
+	private Controller service;
 
 	public OrdinationDetailsPane() {
-		service = Service.getService();
+		service = Controller.getService();
 		setHgap(20);
 		setVgap(10);
 		setGridLinesVisible(false);
