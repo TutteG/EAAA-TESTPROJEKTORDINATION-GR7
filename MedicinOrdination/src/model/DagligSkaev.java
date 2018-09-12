@@ -26,13 +26,12 @@ public class DagligSkaev extends Ordination {
 
 	@Override
 	public double samletDosis() {
-		// TODO Auto-generated method stub
+
 		return doegnDosis() * ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
 	}
 
 	@Override
 	public double doegnDosis() {
-		// TODO Auto-generated method stub
 		double antal = 0;
 		for (Dosis dosis : dosiser) {
 			antal += dosis.getAntal();
@@ -42,7 +41,7 @@ public class DagligSkaev extends Ordination {
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
+		
 		return getLaegemiddel().getEnhed();
 	}
 }
