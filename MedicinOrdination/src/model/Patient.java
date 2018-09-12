@@ -13,11 +13,15 @@ public class Patient {
 		this.navn = navn;
 		this.vaegt = vaegt;
 	}
-	
+
+	public ArrayList<Ordination> getOrdinationer() {
+		return ordinationer;
+	}
+
 	public void addOrdination(Ordination o) {
 		ordinationer.add(o);
 	}
-	
+
 	public void removeOrdination(Ordination o) {
 		ordinationer.remove(o);
 	}
