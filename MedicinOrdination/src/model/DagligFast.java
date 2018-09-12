@@ -20,7 +20,6 @@ public class DagligFast extends Ordination {
 		if (antal <= 0) {
 			return null;
 		} else {
-
 			Dosis dosis = new Dosis(tid, antal);
 			for (int i = 0; i < dosiser.length; i++) {
 				if (dosiser[i] == null) {
