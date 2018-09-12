@@ -47,7 +47,12 @@ public class Controller {
 	 */
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
 			Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
-		// TODO
+		if (startDen.isAfter(slutDen)) {
+			throw IllegalArgumentException;
+		}else {
+			DagligFast dagligFast = new DagligFast(startDen, slutDen, patient, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+			dagligFast.setLaegemiddel(laegemiddel);
+		}
 		return null;
 	}
 
