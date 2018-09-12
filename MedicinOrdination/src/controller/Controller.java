@@ -65,12 +65,20 @@ public class Controller {
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
 			Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
 		// TODO
+		if (startDen.isBefore(slutDen)) {
+			DagligSkaev dagligSkaev = new DagligSkaev(startDen, slutDen, patient);
+			dagligSkaev.setLaegemiddel(laegemiddel);
+			for (int i = 0; i < klokkeSlet.length; i++) {
+				dagligSkaev.createDosis(klokkeSlet[i], antalEnheder[i]);
+			}
+			return dagligSkaev;
+		}
 		return null;
 	}
 
 	/**
-	 * En dato for hvornÃ¥r ordinationen anvendes tilfÃ¸jes ordinationen. Hvis datoen
-	 * ikke er indenfor ordinationens gyldighedsperiode kastes en
+	 * En dato for hvornÃ¥r ordinationen anvendes tilfÃ¸jes ordinationen. Hvis
+	 * datoen ikke er indenfor ordinationens gyldighedsperiode kastes en
 	 * IllegalArgumentException Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
