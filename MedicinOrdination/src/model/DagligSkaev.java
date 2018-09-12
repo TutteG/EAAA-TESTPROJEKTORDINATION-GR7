@@ -14,7 +14,7 @@ public class DagligSkaev extends Ordination {
 		dosiser = new ArrayList<Dosis>();
 	}
 
-	public Dosis opretDosis(LocalTime tid, double antal) {
+	public Dosis createDosis(LocalTime tid, double antal) {
 		if (antal <= 0) {
 			return null;
 		} else {
