@@ -4,11 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import model.DagligFast;
-import model.DagligSkaev;
-import model.Laegemiddel;
-import model.PN;
-import model.Patient;
+import model.*;
 import storage.Storage;
 
 public class Controller {
@@ -39,9 +35,15 @@ public class Controller {
 	 */
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double antal) {
-		PN pn = new PN(startDen, slutDen, patient, antal);
-		pn.setLaegemiddel(laegemiddel);
-		return pn;
+		if (startDen.isBefore(slutDen) || startDen.isEqual(slutDen)) {
+			PN pn = new PN(startDen, slutDen, patient, antal); //Kan her godt vaere samme dato
+			pn.setLaegemiddel(laegemiddel);
+			return pn;
+		}
+		else {
+			throw new IllegalArgumentException("Slutdato er foer startdato");
+		}
+
 	}
 
 	/**
@@ -89,12 +91,16 @@ public class Controller {
 	}
 
 	/**
-	 * En dato for hvornÃ¥r ordinationen anvendes tilfÃ¸jes ordinationen. Hvis
+	 * En dato for hvornaar ordinationen anvendes tilfoejes ordinationen. Hvis
 	 * datoen ikke er indenfor ordinationens gyldighedsperiode kastes en
 	 * IllegalArgumentException Pre: ordination og dato er ikke null
 	 */
 	public void ordinationPNAnvendt(PN ordination, LocalDate dato) {
-		// TODO
+		boolean test = ordination.givDosis(dato);
+		if (!test) {
+			throw new IllegalArgumentException("Dato er invalid");
+		}
+
 	}
 
 	/**
@@ -118,9 +124,23 @@ public class Controller {
 	 * For et givent vægtinterval og et givent lægemiddel, hentes antallet af
 	 * ordinationer. Pre: laegemiddel er ikke null
 	 */
-	public int antalOrdinationerPrVægtPrLægemiddel(double vægtStart, double vægtSlut, Laegemiddel laegemiddel) {
-		// TODO
-		return 0;
+	public int antalOrdinationerPrVægtPrLægemiddel(double vaegtStart, double vaegtSlut, Laegemiddel laegemiddel) {
+		int antal = 0;
+		if (vaegtSlut > vaegtStart) {
+			double temp = vaegtSlut;
+			vaegtSlut = vaegtStart;
+			vaegtStart = temp;
+		}
+		for (Patient p : storage.getAllPatienter()) {
+			if (p.getVaegt() >= vaegtStart && p.getVaegt() <= vaegtSlut) {
+				for (Ordination o : p.getOrdinationer()) {
+					if (o.getLaegemiddel().equals(laegemiddel)) {
+						antal++;
+					}
+				}
+			}
+		}
+		return antal;
 	}
 
 	public List<Patient> getAllPatienter() {
