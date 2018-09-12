@@ -48,10 +48,14 @@ public class Controller {
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
 			Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 		if (startDen.isAfter(slutDen)) {
-			throw IllegalArgumentException;
+			throw new IllegalArgumentException("Start dato må ikke være efter slut dato");
 		}else {
-			DagligFast dagligFast = new DagligFast(startDen, slutDen, patient, laegemiddel, morgenAntal, middagAntal, aftenAntal, natAntal);
+			DagligFast dagligFast = new DagligFast(startDen, slutDen, patient);
 			dagligFast.setLaegemiddel(laegemiddel);
+			dagligFast.createDosis(LocalTime.of(8, 0), morgenAntal);
+			dagligFast.createDosis(LocalTime.of(12, 0), middagAntal);
+			dagligFast.createDosis(LocalTime.of(18, 0), aftenAntal);
+			dagligFast.createDosis(LocalTime.of(22, 0), natAntal);
 		}
 		return null;
 	}
