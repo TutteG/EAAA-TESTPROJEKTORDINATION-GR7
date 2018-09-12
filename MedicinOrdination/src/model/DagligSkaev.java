@@ -15,7 +15,7 @@ public class DagligSkaev extends Ordination {
 	}
 
 	public void opretDosis(LocalTime tid, double antal) {
-		// TODO
+		// TODO retunere null hvis dosis er 0 eller under
 		Dosis dosis = new Dosis(tid, antal);
 		dosiser.add(dosis);
 	}
