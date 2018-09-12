@@ -56,6 +56,25 @@ public abstract class Ordination {
 		return startDen.toString();
 	}
 
+	public double getAnbefaldetDosis() {
+		if (laegemiddel != null) {
+			double dosis;
+			double vaegt = patient.getVaegt();
+			if (vaegt < 25.0) {
+				dosis = vaegt * laegemiddel.getEnhedPrKgPrDoegnLet();
+			}
+			else if (vaegt > 120.0) {
+				dosis = vaegt * laegemiddel.getEnhedPrKgPrDoegnTung();
+			}
+			else {
+				dosis = vaegt * laegemiddel.getEnhedPrKgPrDoegnNormal();
+			}
+			return dosis;
+		}
+		return 0.0;
+
+	}
+
 	/**
 	 * Returnerer den totale dosis der er givet i den periode ordinationen er gyldig
 	 *
