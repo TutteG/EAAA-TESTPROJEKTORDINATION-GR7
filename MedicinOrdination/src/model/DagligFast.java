@@ -16,20 +16,29 @@ public class DagligFast extends Ordination {
 		return dosiser;
 	}
 
-	public void createDosis(LocalTime tid, double antal) {
-		Dosis dosis = new Dosis(tid, antal);
-		boolean found = false;
-		for (int i = 0; i < dosiser.length && found != true; i++) {
-			if (dosiser[i] == null) {
-				dosiser[i] = dosis;
-				found = true;
+	public Dosis createDosis(LocalTime tid, double antal) {
+		if (antal <= 0) {
+			return null;
+		} else {
+
+			Dosis dosis = new Dosis(tid, antal);
+			for (int i = 0; i < dosiser.length; i++) {
+				if (dosiser[i] == null) {
+					dosiser[i] = dosis;
+					return dosis;
+				}
 			}
+			return null;
 		}
 	}
 
 	@Override
 	public double samletDosis() {
-		return doegnDosis() * ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+		if (ChronoUnit.DAYS.between(getStartDen(), getSlutDen()) < 0) {
+			throw new RuntimeException("No es possiblé");
+		} else {
+			return doegnDosis() * ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+		}
 	}
 
 	@Override

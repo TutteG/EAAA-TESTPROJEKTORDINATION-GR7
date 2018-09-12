@@ -26,6 +26,10 @@ public abstract class Ordination {
 		this.patient = patient;
 	}
 
+	public void setSlutDen(LocalDate slutDen) {
+		this.slutDen = slutDen;
+	}
+
 	public Laegemiddel getLaegemiddel() {
 		return laegemiddel;
 	}
@@ -62,11 +66,9 @@ public abstract class Ordination {
 			double vaegt = patient.getVaegt();
 			if (vaegt < 25.0) {
 				dosis = vaegt * laegemiddel.getEnhedPrKgPrDoegnLet();
-			}
-			else if (vaegt > 120.0) {
+			} else if (vaegt > 120.0) {
 				dosis = vaegt * laegemiddel.getEnhedPrKgPrDoegnTung();
-			}
-			else {
+			} else {
 				dosis = vaegt * laegemiddel.getEnhedPrKgPrDoegnNormal();
 			}
 			return dosis;
