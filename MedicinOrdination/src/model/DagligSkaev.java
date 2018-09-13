@@ -16,7 +16,7 @@ public class DagligSkaev extends Ordination {
 
 	public Dosis createDosis(LocalTime tid, double antal) {
 		if (antal <= 0) {
-			return null;
+			throw new RuntimeException("Antal skal være et positivt tal");
 		} else {
 			Dosis dosis = new Dosis(tid, antal);
 			dosiser.add(dosis);
@@ -31,8 +31,12 @@ public class DagligSkaev extends Ordination {
 
 	@Override
 	public double samletDosis() {
+		if (ChronoUnit.DAYS.between(getStartDen(), getSlutDen()) < 0) {
+			throw new RuntimeException("No es possiblé");
+		} else {
 
-		return doegnDosis() * ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+			return doegnDosis() * ChronoUnit.DAYS.between(getStartDen(), getSlutDen());
+		}
 	}
 
 	@Override
