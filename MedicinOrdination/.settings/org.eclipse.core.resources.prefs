@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//src/controller/Controller.java=UTF-8
 encoding//src/gui/StatistikPane.java=UTF-8
 encoding//src/gui/VisOrdinationPane.java=UTF-8
+encoding//src/model/DagligFast.java=UTF-8
+encoding//src/test/TestDagligFast.java=UTF-8

@@ -94,10 +94,10 @@ public class TestDagligFast {
 	@Test
 	public void testCreateDosis() {
 		ordination3 = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
-		Dosis dosis1 = ordination3.createDosis(LocalTime.now(), -1);
-		assertEquals(null, ordination.createDosis(LocalTime.now(), -1));
-		Dosis dosis2 = ordination3.createDosis(LocalTime.now(), 0);
-		assertEquals(null, ordination.createDosis(LocalTime.now(), 0));
+		Dosis dosis1 = ordination3.createDosis(LocalTime.of(8, 0), -1);
+		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), -1));
+		Dosis dosis2 = ordination3.createDosis(LocalTime.of(8, 0), 0);
+		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), 0));
 	}
 
 }
