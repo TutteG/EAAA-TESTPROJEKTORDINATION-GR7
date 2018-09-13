@@ -2,7 +2,6 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -46,7 +45,7 @@ public class TestDagligFast {
 		assertEquals(540, ordination.samletDosis(), 0.001);
 	}
 
-	@Test 
+	@Test
 	public void testSamletDosisException() {
 		try {
 			ordination.setSlutDen(LocalDate.now().minusDays(1));
@@ -56,8 +55,7 @@ public class TestDagligFast {
 		}
 
 	}
-	
-	
+
 	@Test
 	public void testDoegnDosis() {
 		ordination2 = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
@@ -67,23 +65,23 @@ public class TestDagligFast {
 		Dosis dosis02 = ordination2.createDosis(LocalTime.now(), 1);
 		Dosis dosis03 = ordination2.createDosis(LocalTime.now(), 1);
 		Dosis dosis04 = ordination2.createDosis(LocalTime.now(), 1);
-		assertEquals(4, ordination2.doegnDosis(), 0.001);	
+		assertEquals(4, ordination2.doegnDosis(), 0.001);
 	}
-	
+
 	@Test
 	public void testGetType() {
 		Laegemiddel mg = controller.getService().opretLaegemiddel("Vinopyl", 50.0, 60.0, 70.0, "mg");
 		ordination.setLaegemiddel(mg);
 		assertEquals("mg", ordination.getType());
-		Laegemiddel dråber = controller.getService().opretLaegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "dråber");
-		ordination.setLaegemiddel(dråber);
-		assertEquals("dråber", ordination.getType());
-		Laegemiddel rektalSonde = controller.getService().opretLaegemiddel("beer bong", 50.0, 60.0, 70.0, "rektalSonde");
+		Laegemiddel drÃ¥ber = controller.getService().opretLaegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "drï¿½ber");
+		ordination.setLaegemiddel(drÃ¥ber);
+		assertEquals("drï¿½ber", ordination.getType());
+		Laegemiddel rektalSonde = controller.getService().opretLaegemiddel("beer bong", 50.0, 60.0, 70.0,
+				"rektalSonde");
 		ordination.setLaegemiddel(rektalSonde);
 		assertEquals("rektalSonde", ordination.getType());
 	}
-	
-	
+
 	@Ignore
 	public void testGetDoser() {
 		Dosis[] doser = new Dosis[4];
@@ -92,7 +90,7 @@ public class TestDagligFast {
 		doser[2] = dosis3;
 		assertArrayEquals(doser, ordination.getDoser());
 	}
-	
+
 	@Test
 	public void testCreateDosis() {
 		ordination3 = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
@@ -101,5 +99,5 @@ public class TestDagligFast {
 		Dosis dosis2 = ordination3.createDosis(LocalTime.now(), 0);
 		assertEquals(null, ordination.createDosis(LocalTime.now(), 0));
 	}
-	
+
 }
