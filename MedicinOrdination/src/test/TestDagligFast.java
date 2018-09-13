@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -10,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.Controller;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import model.DagligFast;
 import model.Dosis;
 import model.Laegemiddel;
@@ -19,7 +21,11 @@ public class TestDagligFast {
 	Patient patient;
 	DagligFast ordination;
 	DagligFast ordination2;
+	DagligFast ordination3;
 	Controller controller;
+	Dosis dosis1;
+	Dosis dosis2;
+	Dosis dosis3;
 
 	@Before
 	public void setUp() throws Exception {
@@ -69,6 +75,31 @@ public class TestDagligFast {
 		Laegemiddel mg = controller.getService().opretLaegemiddel("Vinopyl", 50.0, 60.0, 70.0, "mg");
 		ordination.setLaegemiddel(mg);
 		assertEquals("mg", ordination.getType());
-		
+		Laegemiddel dråber = controller.getService().opretLaegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "dråber");
+		ordination.setLaegemiddel(dråber);
+		assertEquals("dråber", ordination.getType());
+		Laegemiddel rektalSonde = controller.getService().opretLaegemiddel("beer bong", 50.0, 60.0, 70.0, "rektalSonde");
+		ordination.setLaegemiddel(rektalSonde);
+		assertEquals("rektalSonde", ordination.getType());
 	}
+	
+	
+	@Ignore
+	public void testGetDoser() {
+		Dosis[] doser = new Dosis[4];
+		doser[0] = dosis1;
+		doser[1] = dosis2;
+		doser[2] = dosis3;
+		assertArrayEquals(doser, ordination.getDoser());
+	}
+	
+	@Test
+	public void testCreateDosis() {
+		ordination3 = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
+		Dosis dosis1 = ordination3.createDosis(LocalTime.now(), -1);
+		assertEquals(null, ordination.createDosis(LocalTime.now(), -1));
+		Dosis dosis2 = ordination3.createDosis(LocalTime.now(), 0);
+		assertEquals(null, ordination.createDosis(LocalTime.now(), 0));
+	}
+	
 }
