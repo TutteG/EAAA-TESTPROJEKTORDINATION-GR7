@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,12 +30,20 @@ public class TestDagligFast {
 	@Test
 	public void testSamletDosis() {
 		assertEquals(0, ordination.samletDosis(), 0.001);
-//		ordination.setSlutDen(LocalDate.now().minusDays(1));
-//		assertEquals(0, ordination.samletDosis(), 0.001);
 		ordination.setSlutDen(LocalDate.now().plusDays(1));
 		assertEquals(9, ordination.samletDosis(), 0.001);
 		ordination.setSlutDen(LocalDate.now().plusDays(60));
 		assertEquals(540, ordination.samletDosis(), 0.001);
 	}
 
+	@Test
+	public void testSamletDosisException() {
+		try {
+			ordination.setSlutDen(LocalDate.now().minusDays(1));
+			
+		} catch (RuntimeException e) {
+			assertEquals(e.getMessage(), "For mange karakterer givet");
+		}
+
+	}
 }
