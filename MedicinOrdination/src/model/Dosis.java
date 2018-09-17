@@ -32,4 +32,14 @@ public class Dosis {
 		return "Kl: " + tid + "   antal:  " + antal;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		Dosis dosis = (Dosis) obj;
+		if (dosis.getTid().equals(getTid()) == true && dosis.getAntal() == getAntal()) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 }

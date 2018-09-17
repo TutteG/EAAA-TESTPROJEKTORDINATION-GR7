@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,7 +21,7 @@ public class TestDagligFast {
 	Patient patient;
 	DagligFast ordination;
 	DagligFast ordination2;
-	DagligFast ordination3;
+	DagligFast ordinationTemp;
 	Controller controller;
 	Dosis dosis1;
 	Dosis dosis2;
@@ -30,6 +31,7 @@ public class TestDagligFast {
 	public void setUp() throws Exception {
 		patient = new Patient("12345-6789", "Niels Ottosen", 87.3);
 		ordination = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
+		ordinationTemp = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
 		Dosis dosis1 = ordination.createDosis(LocalTime.now(), 1);
 		Dosis dosis2 = ordination.createDosis(LocalTime.now().plusMinutes(60), 6);
 		Dosis dosis3 = ordination.createDosis(LocalTime.now().plusHours(2), 2);
@@ -92,12 +94,21 @@ public class TestDagligFast {
 	}
 
 	@Test
-	public void testCreateDosis() {
-		ordination3 = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
-		Dosis dosis1 = ordination3.createDosis(LocalTime.of(8, 0), -1);
+	public void testCreateDosisNull() {
 		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), -1));
-		Dosis dosis2 = ordination3.createDosis(LocalTime.of(8, 0), 0);
 		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), 0));
+	}
+	
+	@Test
+	public void testCreateDosisAntal1() {
+		Dosis dosis = ordinationTemp.createDosis(LocalTime.of(8, 0), 1);
+		assertEquals(dosis, ordination.createDosis(LocalTime.of(8, 0), 1));
+	}
+	
+	@Test
+	public void testCreateDosisAntal2() {
+		Dosis dosis = ordinationTemp.createDosis(LocalTime.of(8, 0), 5);
+		assertEquals(dosis, ordination.createDosis(LocalTime.of(8, 0), 5));
 	}
 
 }
