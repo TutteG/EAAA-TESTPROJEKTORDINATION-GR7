@@ -225,7 +225,7 @@ public class TestController {
 
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testOpretPatient2() {
 		Patient p = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 0);
 		assertNotNull(p);
