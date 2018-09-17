@@ -15,7 +15,6 @@ public abstract class Ordination {
 		this.laegemiddel = null;
 		this.patient = patient;
 		patient.addOrdination(this);
-		// TODO vend tilbage
 	}
 
 	public Patient getPatient() {
