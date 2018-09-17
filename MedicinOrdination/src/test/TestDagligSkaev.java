@@ -73,7 +73,7 @@ public class TestDagligSkaev {
 	@Test
 	public void testDoegnDosis10() {
 		DagligSkaev skaev = new DagligSkaev(LocalDate.now(), LocalDate.now(), p);
-		dosis2 = skaev.createDosis(LocalTime.of(8, 0), 9);
+		dosis2 = skaev.createDosis(LocalTime.of(8, 0), 10);
 		assertEquals(10, skaev.doegnDosis(), 0.001);
 	}
 
