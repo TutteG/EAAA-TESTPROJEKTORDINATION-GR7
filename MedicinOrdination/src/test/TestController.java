@@ -12,6 +12,7 @@ import org.junit.Test;
 import controller.Controller;
 import model.Laegemiddel;
 import model.Ordination;
+import model.PN;
 import model.Patient;
 
 public class TestController {
@@ -119,12 +120,16 @@ public class TestController {
 	}
 
 	@Test
-	public void testOrdinationPNAnvendtDagIndenforPeriode() {
-
-	}
-
-	@Test
 	public void testOrdinationPNAnvendtDagUdenforPeriode() {
 
+		try {
+			PN ordination = Controller.getService().opretPNOrdination(LocalDate.now(), LocalDate.now().plusDays(1),
+					patient, laegemiddel, 1);
+			Controller.getService().ordinationPNAnvendt(ordination, LocalDate.now().plusDays(2));
+
+		} catch (IllegalArgumentException e) {
+			// TODO: handle exception
+			assertEquals(e.getMessage(), "Dato er invalid");
+		}
 	}
 }
