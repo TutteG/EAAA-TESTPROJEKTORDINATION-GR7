@@ -38,7 +38,7 @@ public class PN extends Ordination {
 		try {
 			return (antalGangeGivet * antalEnheder) / ChronoUnit.DAYS.between(getStartDen(), getSlutDen()); // LocalDate.now()?
 		} catch (ArithmeticException e) {
-			return -1;
+			throw new ArithmeticException("No es possiblé");
 		}
 	}
 
