@@ -19,10 +19,12 @@ public class Patient {
 	}
 
 	public void addOrdination(Ordination o) {
+		o.setPatient(this);
 		ordinationer.add(o);
 	}
 
 	public void removeOrdination(Ordination o) {
+		o.setPatient(null);
 		ordinationer.remove(o);
 	}
 
@@ -45,8 +47,6 @@ public class Patient {
 	public void setVaegt(double vaegt) {
 		this.vaegt = vaegt;
 	}
-
-	// TODO: Metoder (med specifikation) til at vedligeholde link til Ordination
 
 	@Override
 	public String toString() {
