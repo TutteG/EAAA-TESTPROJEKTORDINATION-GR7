@@ -4,7 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import model.*;
+import model.DagligFast;
+import model.DagligSkaev;
+import model.Laegemiddel;
+import model.Ordination;
+import model.PN;
+import model.Patient;
 import storage.Storage;
 
 public class Controller {
@@ -36,11 +41,10 @@ public class Controller {
 	public PN opretPNOrdination(LocalDate startDen, LocalDate slutDen, Patient patient, Laegemiddel laegemiddel,
 			double antal) {
 		if (startDen.isBefore(slutDen) || startDen.isEqual(slutDen)) {
-			PN pn = new PN(startDen, slutDen, patient, antal); //Kan her godt vaere samme dato
+			PN pn = new PN(startDen, slutDen, patient, antal); // Kan her godt vaere samme dato
 			pn.setLaegemiddel(laegemiddel);
 			return pn;
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Slutdato er foer startdato");
 		}
 
@@ -54,7 +58,7 @@ public class Controller {
 	public DagligFast opretDagligFastOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
 			Laegemiddel laegemiddel, double morgenAntal, double middagAntal, double aftenAntal, double natAntal) {
 		if (startDen.isAfter(slutDen)) {
-			throw new IllegalArgumentException("Start dato må ikke være efter slut dato");
+			throw new IllegalArgumentException("Startdato må ikke være efter slutdato");
 		} else {
 			DagligFast dagligFast = new DagligFast(startDen, slutDen, patient);
 			dagligFast.setLaegemiddel(laegemiddel);
@@ -76,8 +80,7 @@ public class Controller {
 	 */
 	public DagligSkaev opretDagligSkaevOrdination(LocalDate startDen, LocalDate slutDen, Patient patient,
 			Laegemiddel laegemiddel, LocalTime[] klokkeSlet, double[] antalEnheder) {
-		// TODO
-		if (startDen.isBefore(slutDen) && klokkeSlet.length == antalEnheder.length) {
+		if (startDen.isBefore(slutDen) || startDen.isEqual(slutDen) && klokkeSlet.length == antalEnheder.length) {
 			DagligSkaev dagligSkaev = new DagligSkaev(startDen, slutDen, patient);
 			dagligSkaev.setLaegemiddel(laegemiddel);
 			for (int i = 0; i < klokkeSlet.length; i++) {

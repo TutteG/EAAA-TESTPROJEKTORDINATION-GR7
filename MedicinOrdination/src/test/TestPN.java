@@ -1,12 +1,16 @@
 package test;
 
-import jdk.internal.jline.internal.TestAccessible;
-import model.PN;
-import model.Patient;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.time.LocalDate;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
+import model.PN;
+import model.Patient;
 
 public class TestPN {
 	Patient patient;
@@ -41,35 +45,33 @@ public class TestPN {
 	@Test
 	public void testDoegnDosis2() {
 		PN pn1 = new PN(LocalDate.now().minusDays(5), LocalDate.now().plusDays(7), patient, 1);
-		assertEquals(0, pn1.doegnDosis());
+		assertEquals(0, pn1.doegnDosis(), 00.1);
 
 	}
 
 	@Test
 	public void testDoegnDosis3() {
 		PN pn1 = new PN(LocalDate.now(), LocalDate.now().plusDays(7), patient, 1);
-		for (int i = 0; i <5; i++) {
+		for (int i = 0; i < 5; i++) {
 			pn1.givDosis(LocalDate.now());
 		}
-		assertEquals(-1, pn1.doegnDosis());
+		assertEquals(-1, pn1.doegnDosis(), 00.1);
 	}
 
 	@Test
 	public void testDoegnDosis4() {
 		PN pn1 = new PN(LocalDate.now(), LocalDate.now().plusDays(1), patient, 1);
 		pn1.givDosis();
-		assertEquals(1, pn1.doegnDosis());
+		assertEquals(1, pn1.doegnDosis(), 00.1);
 	}
 
 	@Test
 	public void testDoegnDosis5() {
 		PN pn1 = new PN(LocalDate.now().minusDays(5), LocalDate.now(), patient, 1);
-		for (int i = 0; i <10; i++) {
+		for (int i = 0; i < 10; i++) {
 			pn1.givDosis(LocalDate.now());
 		}
-		assertEquals(-1, pn1.doegnDosis());
+		assertEquals(-1, pn1.doegnDosis(), 00.1);
 	}
 
 }
-
-
