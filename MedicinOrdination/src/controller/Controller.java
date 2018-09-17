@@ -120,8 +120,7 @@ public class Controller {
 		} else {
 			if (patient.getVaegt() > 0) {
 				result = patient.getVaegt() * laegemiddel.getEnhedPrKgPrDoegnNormal();
-			}
-			else {
+			} else {
 				throw new IllegalArgumentException("You are not made out of antimatter");
 			}
 
@@ -135,11 +134,11 @@ public class Controller {
 	 */
 	public int antalOrdinationerPrVægtPrLægemiddel(double vaegtStart, double vaegtSlut, Laegemiddel laegemiddel) {
 		int antal = 0;
-		if (vaegtSlut > vaegtStart) {
-			double temp = vaegtSlut;
-			vaegtSlut = vaegtStart;
-			vaegtStart = temp;
-		}
+//		if (vaegtSlut > vaegtStart) {
+//			double temp = vaegtSlut;
+//			vaegtSlut = vaegtStart;
+//			vaegtStart = temp;
+//		}
 		for (Patient p : storage.getAllPatienter()) {
 			if (p.getVaegt() >= vaegtStart && p.getVaegt() <= vaegtSlut) {
 				for (Ordination o : p.getOrdinationer()) {
@@ -178,8 +177,7 @@ public class Controller {
 			Patient p = new Patient(cpr, navn, vaegt);
 			storage.addPatient(p);
 			return p;
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("You should fatten up");
 		}
 	}
@@ -187,12 +185,11 @@ public class Controller {
 	public Laegemiddel opretLaegemiddel(String navn, double enhedPrKgPrDoegnLet, double enhedPrKgPrDoegnNormal,
 			double enhedPrKgPrDoegnTung, String enhed) {
 		if (enhedPrKgPrDoegnLet > 0 && enhedPrKgPrDoegnNormal > 0 && enhedPrKgPrDoegnTung > 0) {
-			Laegemiddel lm = new Laegemiddel(navn, enhedPrKgPrDoegnLet, enhedPrKgPrDoegnNormal,
-					enhedPrKgPrDoegnTung, enhed);
+			Laegemiddel lm = new Laegemiddel(navn, enhedPrKgPrDoegnLet, enhedPrKgPrDoegnNormal, enhedPrKgPrDoegnTung,
+					enhed);
 			storage.addLaegemiddel(lm);
 			return lm;
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException("Dont feed your patients antimatter, we dont know the consequences!");
 		}
 	}
