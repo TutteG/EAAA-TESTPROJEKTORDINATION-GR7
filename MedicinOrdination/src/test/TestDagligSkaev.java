@@ -32,10 +32,17 @@ public class TestDagligSkaev {
 	}
 
 	@Test
-	public void testSamletDosis() {
+	public void testSamletDosis0() {
 		assertEquals(0, ds.samletDosis(), 0.001);
+
+	}
+	@Test
+	public void testSamletDosis19() {
 		ds.setSlutDen(LocalDate.now().plusDays(1));
 		assertEquals(19, ds.samletDosis(), 0.001);
+	}
+	@Test
+	public void testSamletDosis1140() {
 		ds.setSlutDen(LocalDate.now().plusDays(60));
 		assertEquals(1140, ds.samletDosis(), 0.001);
 	}
@@ -52,17 +59,26 @@ public class TestDagligSkaev {
 	}
 
 	@Test
-	public void testDoegnDosis() {
+	public void testDoegnDosis0() {
 		DagligSkaev skaev = new DagligSkaev(LocalDate.now(), LocalDate.now(), p);
 		assertEquals(0, skaev.doegnDosis(), 0.001);
+	}
+	@Test
+	public void testDoegnDosis1() {
+		DagligSkaev skaev = new DagligSkaev(LocalDate.now(), LocalDate.now(), p);
 		dosis1 = skaev.createDosis(LocalTime.of(8, 0), 1);
 		assertEquals(1, skaev.doegnDosis(), 0.001);
+
+	}
+	@Test
+	public void testDoegnDosis10() {
+		DagligSkaev skaev = new DagligSkaev(LocalDate.now(), LocalDate.now(), p);
 		dosis2 = skaev.createDosis(LocalTime.of(8, 0), 9);
 		assertEquals(10, skaev.doegnDosis(), 0.001);
 	}
 
 	@Test
-	public void testDoegnDosisFail() {
+	public void testDoegnDosisFail1() {
 		try {
 			DagligSkaev skaev = new DagligSkaev(LocalDate.now(), LocalDate.now(), p);
 			dosis1 = skaev.createDosis(LocalTime.of(8, 0), -1);
@@ -71,6 +87,12 @@ public class TestDagligSkaev {
 			// TODO: handle exception
 			assertEquals(e.getMessage(), "Antal skal være et positivt tal");
 		}
+
+	}
+
+	@Test
+	public void testDoegnDosisFail2() {
+
 		try {
 			DagligSkaev skaev = new DagligSkaev(LocalDate.now(), LocalDate.now(), p);
 			dosis1 = skaev.createDosis(LocalTime.of(8, 0), 0);
@@ -81,17 +103,22 @@ public class TestDagligSkaev {
 		}
 	}
 
+
 	@Test
-	public void testCreateDosis() {
+	public void testCreateDosis1() {
 		Dosis dosis10 = ds.createDosis(LocalTime.of(8, 0), 1);
 		assertEquals(1, dosis10.getAntal(), 0.001);
 
-		dosis10 = ds.createDosis(LocalTime.of(8, 0), 50);
+	}
+
+	@Test
+	public void testCreateDosis10() {
+		Dosis dosis10 = ds.createDosis(LocalTime.of(8, 0), 50);
 		assertEquals(50, dosis10.getAntal(), 0.001);
 	}
 
 	@Test
-	public void testCreateDosisFail() {
+	public void testCreateDosisFail1() {
 		try {
 			Dosis dosis10 = ds.createDosis(LocalTime.of(8, 0), 0);
 			assertEquals(1, dosis10.getAntal(), 0.001);
@@ -101,6 +128,12 @@ public class TestDagligSkaev {
 			assertEquals(e.getMessage(), "Antal skal være et positivt tal");
 
 		}
+
+	}
+
+	@Test
+	public void testCreateDosisFail2() {
+
 		try {
 			Dosis dosis10 = ds.createDosis(LocalTime.of(8, 0), -1);
 			assertEquals(1, dosis10.getAntal(), 0.001);
@@ -112,4 +145,5 @@ public class TestDagligSkaev {
 		}
 
 	}
+
 }
