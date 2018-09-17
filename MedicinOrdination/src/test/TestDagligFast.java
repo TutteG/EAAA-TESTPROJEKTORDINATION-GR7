@@ -20,33 +20,39 @@ import model.Patient;
 public class TestDagligFast {
 	Patient patient;
 	DagligFast ordination;
-	DagligFast ordination2;
 	DagligFast ordinationTemp;
 	Controller controller;
 	Dosis dosis1;
 	Dosis dosis2;
 	Dosis dosis3;
+	Dosis dosis4;
 
 	@Before
 	public void setUp() throws Exception {
 		patient = new Patient("12345-6789", "Niels Ottosen", 87.3);
 		ordination = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
 		ordinationTemp = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
-		Dosis dosis1 = ordination.createDosis(LocalTime.now(), 1);
-		Dosis dosis2 = ordination.createDosis(LocalTime.now().plusMinutes(60), 6);
-		Dosis dosis3 = ordination.createDosis(LocalTime.now().plusHours(2), 2);
+		dosis1 = ordination.createDosis(LocalTime.now(), 1);
+		dosis2 = ordination.createDosis(LocalTime.now().plusMinutes(60), 6);
+		dosis3 = ordination.createDosis(LocalTime.now().plusHours(2), 2);
 
 	}
 
+	
 	@Test
 	public void testSamletDosis() {
 		assertEquals(0, ordination.samletDosis(), 0.001);
+	}
+	@Test
+	public void testSamletDosisPlus1() {
 		ordination.setSlutDen(LocalDate.now().plusDays(1));
 		assertEquals(9, ordination.samletDosis(), 0.001);
+	}
+	@Test
+	public void testSamletDosisPlus60() {
 		ordination.setSlutDen(LocalDate.now().plusDays(60));
 		assertEquals(540, ordination.samletDosis(), 0.001);
 	}
-
 	@Test
 	public void testSamletDosisException() {
 		try {
@@ -58,33 +64,47 @@ public class TestDagligFast {
 
 	}
 
+	
 	@Test
 	public void testDoegnDosis() {
-		ordination2 = new DagligFast(LocalDate.now(), LocalDate.now().plusDays(0), patient);
-		assertEquals(0, ordination2.doegnDosis(), 0.001);
-		Dosis dosis01 = ordination2.createDosis(LocalTime.now(), 1);
-		assertEquals(1.0, ordination2.doegnDosis(), 0.001);
-		Dosis dosis02 = ordination2.createDosis(LocalTime.now(), 1);
-		Dosis dosis03 = ordination2.createDosis(LocalTime.now(), 1);
-		Dosis dosis04 = ordination2.createDosis(LocalTime.now(), 1);
-		assertEquals(4, ordination2.doegnDosis(), 0.001);
+		assertEquals(0, ordinationTemp.doegnDosis(), 0.001);
+	}
+	@Test
+	public void testDowgnDosis1() {
+		dosis1 = ordinationTemp.createDosis(LocalTime.now(), 1);
+		assertEquals(1.0, ordinationTemp.doegnDosis(), 0.001);
+	}
+	@Test
+	public void testDoegnDosis4() {
+		dosis1 = ordinationTemp.createDosis(LocalTime.now(), 1);
+		dosis2 = ordinationTemp.createDosis(LocalTime.now(), 1);
+		dosis3 = ordinationTemp.createDosis(LocalTime.now(), 1);
+		dosis4 = ordinationTemp.createDosis(LocalTime.now(), 1);
+		assertEquals(4, ordinationTemp.doegnDosis(), 0.001);
 	}
 
+	
 	@Test
-	public void testGetType() {
+	public void testGetTypeMg() {
 		Laegemiddel mg = controller.getService().opretLaegemiddel("Vinopyl", 50.0, 60.0, 70.0, "mg");
 		ordination.setLaegemiddel(mg);
 		assertEquals("mg", ordination.getType());
-		Laegemiddel dråber = controller.getService().opretLaegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "dr�ber");
+	}
+	@Test
+	public void testGetTypeDråber() {
+		Laegemiddel dråber = controller.getService().opretLaegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "dråber");
 		ordination.setLaegemiddel(dråber);
-		assertEquals("dr�ber", ordination.getType());
-		Laegemiddel rektalSonde = controller.getService().opretLaegemiddel("beer bong", 50.0, 60.0, 70.0,
-				"rektalSonde");
-		ordination.setLaegemiddel(rektalSonde);
-		assertEquals("rektalSonde", ordination.getType());
+		assertEquals("dråber", ordination.getType());
+	}
+	@Test
+	public void testGetTypeStikPille() {
+		Laegemiddel stikPille = controller.getService().opretLaegemiddel("Probeitohl", 50.0, 60.0, 70.0, "Stik pille");
+		ordination.setLaegemiddel(stikPille);
+		assertEquals("Stik pille", ordination.getType());
 	}
 
-	@Ignore
+	
+	@Test
 	public void testGetDoser() {
 		Dosis[] doser = new Dosis[4];
 		doser[0] = dosis1;
@@ -93,18 +113,20 @@ public class TestDagligFast {
 		assertArrayEquals(doser, ordination.getDoser());
 	}
 
-	@Test
-	public void testCreateDosisNull() {
-		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), -1));
-		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), 0));
-	}
 	
+	@Test
+	public void testCreateDosisNullMinus() {
+		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), -1));
+	}
+	@Test
+	public void testCreateDosisNullZero() {
+		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), 0));
+	}	
 	@Test
 	public void testCreateDosisAntal1() {
 		Dosis dosis = ordinationTemp.createDosis(LocalTime.of(8, 0), 1);
 		assertEquals(dosis, ordination.createDosis(LocalTime.of(8, 0), 1));
 	}
-	
 	@Test
 	public void testCreateDosisAntal2() {
 		Dosis dosis = ordinationTemp.createDosis(LocalTime.of(8, 0), 5);
