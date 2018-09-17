@@ -6,12 +6,16 @@ import static org.junit.Assert.assertNotNull;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import model.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import controller.Controller;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import model.DagligFast;
+import model.Laegemiddel;
+import model.Ordination;
+import model.PN;
+import model.Patient;
 
 public class TestController {
 	Patient patient;
@@ -21,38 +25,53 @@ public class TestController {
 	public void setUp() {
 		patient = new Patient("123456-7890", "Niels Ottosen", 87.3);
 		laegemiddel = new Laegemiddel("Rohypnol", 1, 2, 3, "Kilogram");
-		Patient p1 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 20);
-		Patient p2 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 30);
-		Patient p3 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 40);
-		Patient p4 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 50);
-		Patient p5 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 60);
-		Patient p6 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 70);
-		Patient p7 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 80);
-		Patient p8 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 90);
-		Patient p9 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 100);
-		Patient p10 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 110);
-		Patient p11 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 120);
-		Patient p12 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 130);
-		Patient p13 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 10);
-		Patient p14 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 65);
-		Patient p15 = Controller.getService().opretPatient(("880614-1234", "Elin Thomsen", 75);
+		Patient p1 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 20);
+		Patient p2 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 30);
+		Patient p3 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 40);
+		Patient p4 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 50);
+		Patient p5 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 60);
+		Patient p6 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 70);
+		Patient p7 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 80);
+		Patient p8 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 90);
+		Patient p9 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 100);
+		Patient p10 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 110);
+		Patient p11 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 120);
+		Patient p12 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 130);
+		Patient p13 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 10);
+		Patient p14 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 65);
+		Patient p15 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 75);
 		Laegemiddel lm1 = Controller.getService().opretLaegemiddel("Panodil", 2.0, 5.0, 3.0, "mg");
 		Laegemiddel lm2 = Controller.getService().opretLaegemiddel("Ipren", 3.0, 4.0, 7.0, "mg");
-		DagligFast o1 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p1, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o2 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p2, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o3 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p3, lm2, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o4 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p4, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o5 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p5, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o6 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p6, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o7 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p7, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o8 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p8, lm2, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o9 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p9, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o10 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p10, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o11 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p11, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o12 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p12, lm2, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o13 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p13, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o14 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p14, lm1, 1.0, 1.0., 1.0, 1.0);
-		DagligFast o15 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10), p15, lm1, 1.0, 1.0., 1.0, 1.0);
+		DagligFast o1 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p1, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o2 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p2, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o3 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p3, lm2, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o4 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p4, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o5 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p5, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o6 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p6, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o7 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p7, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o8 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p8, lm2, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o9 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
+				p9, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o10 = Controller.getService().opretDagligFastOrdination(LocalDate.now(),
+				LocalDate.now().plusDays(10), p10, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o11 = Controller.getService().opretDagligFastOrdination(LocalDate.now(),
+				LocalDate.now().plusDays(10), p11, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o12 = Controller.getService().opretDagligFastOrdination(LocalDate.now(),
+				LocalDate.now().plusDays(10), p12, lm2, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o13 = Controller.getService().opretDagligFastOrdination(LocalDate.now(),
+				LocalDate.now().plusDays(10), p13, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o14 = Controller.getService().opretDagligFastOrdination(LocalDate.now(),
+				LocalDate.now().plusDays(10), p14, lm1, 1.0, 1.0, 1.0, 1.0);
+		DagligFast o15 = Controller.getService().opretDagligFastOrdination(LocalDate.now(),
+				LocalDate.now().plusDays(10), p15, lm1, 1.0, 1.0, 1.0, 1.0);
 	}
 
 	@Test
@@ -169,22 +188,22 @@ public class TestController {
 		assertNotNull(test);
 	}
 
-	@Test (expected = IllegalArguementException)
+	@Test(expected = IllegalArgumentException.class)
 	public void testOpretLaegemiddel2() {
 		Laegemiddel test = Controller.getService().opretLaegemiddel("Panodil", 2.0, 5.0, -3.0, "mg");
-		assertNull(test);
+		assertNotNull(test);
 	}
 
-	@Test (expected = IllegalArguementException)
+	@Test(expected = IllegalArgumentException.class)
 	public void testOpretLaegemiddel3() {
 		Laegemiddel test = Controller.getService().opretLaegemiddel("Panodil", 2.0, -5.0, 3.0, "mg");
-		assertNull(test);
+		assertNotNull(test);
 	}
 
-	@Test (expected = IllegalArguementException)
+	@Test(expected = IllegalArgumentException.class)
 	public void testOpretLaegemiddel4() {
 		Laegemiddel test = Controller.getService().opretLaegemiddel("Panodil", -2.0, 5.0, 3.0, "mg");
-		assertNull(test);
+		assertNotNull(test);
 	}
 
 	@Test
@@ -199,7 +218,7 @@ public class TestController {
 		assertNotNull(test);
 	}
 
-	@Test (expected = IllegalArgumentException)
+	@Test(expected = IllegalArgumentException.class)
 	public void testOpretPatient1() {
 		Patient p = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", -5);
 		assertNotNull(p);
@@ -242,10 +261,9 @@ public class TestController {
 		assertNotNull(p);
 	}
 
-
 	@Ignore
 	public void antalOrdinationerPrVaegtPrLaegemiddel() {
 
-		//Controller.getService().antalOrdinationerPrVægtPrLægemiddel(25.0, 75.0, )
+		// Controller.getService().antalOrdinationerPrVægtPrLægemiddel(25.0, 75.0, )
 	}
 }
