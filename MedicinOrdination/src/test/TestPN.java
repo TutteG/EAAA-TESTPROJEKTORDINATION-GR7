@@ -72,7 +72,7 @@ public class TestPN {
 	@Test
 	public void testDoegnDosis3() {
 		pn = new PN(LocalDate.now(), LocalDate.now().plusDays(7), patient, 5);
-		try {	
+		try {
 			for (int i = 0; i < 5; i++) {
 				pn.givDosis(LocalDate.now());
 			}
@@ -92,11 +92,11 @@ public class TestPN {
 	public void testDoegnDosis5() {
 		pn = new PN(LocalDate.now().minusDays(5), LocalDate.now(), patient, 1);
 		try {
-		for (int i = 0; i < 10; i++) {
-			pn.givDosis(LocalDate.now());
-		}
-		}catch(ArithmeticException e) {
-		assertEquals("No es possiblé", e.getMessage());
+			for (int i = 0; i < 10; i++) {
+				pn.givDosis(LocalDate.now());
+			}
+		} catch (ArithmeticException e) {
+			assertEquals("No es possiblé", e.getMessage());
 		}
 	}
 
