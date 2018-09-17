@@ -264,7 +264,7 @@ public class TestController {
 
 	@Test
 	public void testAntalOrdinationerPrVaegtPrLaegemiddel() {
-		assertEquals(0, Controller.getService().antalOrdinationerPrVægtPrLægemiddel(40.0, 90.0, laegemiddel));
+		assertEquals(0, Controller.getService().antalOrdinationerPrVægtPrLægemiddel(40.0, -90.0, laegemiddel));
 	}
 	
 	@Test
