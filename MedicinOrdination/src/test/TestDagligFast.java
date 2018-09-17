@@ -2,16 +2,11 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import controller.Controller;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import model.DagligFast;
 import model.Dosis;
 import model.Laegemiddel;
