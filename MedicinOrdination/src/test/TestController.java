@@ -20,6 +20,7 @@ import model.Patient;
 public class TestController {
 	Patient patient;
 	Laegemiddel laegemiddel;
+	Laegemiddel lm1;
 
 	@Before
 	public void setUp() {
@@ -40,7 +41,7 @@ public class TestController {
 		Patient p13 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 10);
 		Patient p14 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 65);
 		Patient p15 = Controller.getService().opretPatient("880614-1234", "Elin Thomsen", 75);
-		Laegemiddel lm1 = Controller.getService().opretLaegemiddel("Panodil", 2.0, 5.0, 3.0, "mg");
+		lm1 = Controller.getService().opretLaegemiddel("Panodil", 2.0, 5.0, 3.0, "mg");
 		Laegemiddel lm2 = Controller.getService().opretLaegemiddel("Ipren", 3.0, 4.0, 7.0, "mg");
 		DagligFast o1 = Controller.getService().opretDagligFastOrdination(LocalDate.now(), LocalDate.now().plusDays(10),
 				p1, lm1, 1.0, 1.0, 1.0, 1.0);
@@ -261,9 +262,13 @@ public class TestController {
 		assertNotNull(p);
 	}
 
-	@Ignore
-	public void antalOrdinationerPrVaegtPrLaegemiddel() {
-
-		// Controller.getService().antalOrdinationerPrVægtPrLægemiddel(25.0, 75.0, )
+	@Test
+	public void testAntalOrdinationerPrVaegtPrLaegemiddel() {
+		assertEquals(0, Controller.getService().antalOrdinationerPrVægtPrLægemiddel(40.0, 90.0, laegemiddel));
+	}
+	
+	@Test
+	public void testAntalOrdinationerPrVaegtPrLaegemiddel2() {
+		assertEquals(7, Controller.getService().antalOrdinationerPrVægtPrLægemiddel(26, 89, lm1));
 	}
 }
