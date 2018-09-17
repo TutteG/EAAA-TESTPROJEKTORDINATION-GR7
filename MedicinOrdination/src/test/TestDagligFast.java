@@ -2,10 +2,13 @@ package test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import controller.Controller;
 import model.DagligFast;
 import model.Dosis;
@@ -33,21 +36,23 @@ public class TestDagligFast {
 
 	}
 
-	
 	@Test
 	public void testSamletDosis() {
 		assertEquals(0, ordination.samletDosis(), 0.001);
 	}
+
 	@Test
 	public void testSamletDosisPlus1() {
 		ordination.setSlutDen(LocalDate.now().plusDays(1));
 		assertEquals(9, ordination.samletDosis(), 0.001);
 	}
+
 	@Test
 	public void testSamletDosisPlus60() {
 		ordination.setSlutDen(LocalDate.now().plusDays(60));
 		assertEquals(540, ordination.samletDosis(), 0.001);
 	}
+
 	@Test
 	public void testSamletDosisException() {
 		try {
@@ -59,16 +64,17 @@ public class TestDagligFast {
 
 	}
 
-	
 	@Test
 	public void testDoegnDosis() {
 		assertEquals(0, ordinationTemp.doegnDosis(), 0.001);
 	}
+
 	@Test
 	public void testDowgnDosis1() {
 		dosis1 = ordinationTemp.createDosis(LocalTime.now(), 1);
 		assertEquals(1.0, ordinationTemp.doegnDosis(), 0.001);
 	}
+
 	@Test
 	public void testDoegnDosis4() {
 		dosis1 = ordinationTemp.createDosis(LocalTime.now(), 1);
@@ -78,27 +84,27 @@ public class TestDagligFast {
 		assertEquals(4, ordinationTemp.doegnDosis(), 0.001);
 	}
 
-	
 	@Test
 	public void testGetTypeMg() {
-		Laegemiddel mg = controller.getService().opretLaegemiddel("Vinopyl", 50.0, 60.0, 70.0, "mg");
+		Laegemiddel mg = new Laegemiddel("Vinopyl", 50.0, 60.0, 70.0, "mg");
 		ordination.setLaegemiddel(mg);
 		assertEquals("mg", ordination.getType());
 	}
+
 	@Test
 	public void testGetTypeDråber() {
-		Laegemiddel dråber = controller.getService().opretLaegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "dråber");
+		Laegemiddel dråber = new Laegemiddel("Rhynoldahl", 50.0, 60.0, 70.0, "dråber");
 		ordination.setLaegemiddel(dråber);
 		assertEquals("dråber", ordination.getType());
 	}
+
 	@Test
 	public void testGetTypeStikPille() {
-		Laegemiddel stikPille = controller.getService().opretLaegemiddel("Probeitohl", 50.0, 60.0, 70.0, "Stik pille");
+		Laegemiddel stikPille = new Laegemiddel("Probeitohl", 50.0, 60.0, 70.0, "Stik pille");
 		ordination.setLaegemiddel(stikPille);
 		assertEquals("Stik pille", ordination.getType());
 	}
 
-	
 	@Test
 	public void testGetDoser() {
 		Dosis[] doser = new Dosis[4];
@@ -108,20 +114,22 @@ public class TestDagligFast {
 		assertArrayEquals(doser, ordination.getDoser());
 	}
 
-	
 	@Test
 	public void testCreateDosisNullMinus() {
 		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), -1));
 	}
+
 	@Test
 	public void testCreateDosisNullZero() {
 		assertEquals(null, ordination.createDosis(LocalTime.of(8, 0), 0));
-	}	
+	}
+
 	@Test
 	public void testCreateDosisAntal1() {
 		Dosis dosis = ordinationTemp.createDosis(LocalTime.of(8, 0), 1);
 		assertEquals(dosis, ordination.createDosis(LocalTime.of(8, 0), 1));
 	}
+
 	@Test
 	public void testCreateDosisAntal2() {
 		Dosis dosis = ordinationTemp.createDosis(LocalTime.of(8, 0), 5);
